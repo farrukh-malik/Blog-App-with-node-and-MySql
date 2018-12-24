@@ -34,6 +34,20 @@ module.exports = ()=>{
             }
         });
 
+        router.get('/user/:userId/post', async (req, res, next)=>{
+            try{
+                const userId = req.params.userId;
+                const userPosts = await userService.getUserPostAndComment(userId); 
+                 res.status(200).json({
+                     res: "success",
+                     posts: userPosts
+                 })
+             }catch(error){
+                 res.status(401).json({
+                     err: error
+                 });
+             }
+        });
 
         
     // router.post('/user/:userId/authenticate', (req, res)=>{

@@ -19,6 +19,13 @@ connection.connect(err => {
         }
         console.log('post Table Created');
     });
+
+    connection.query(schema.CREATE_COMMENT_TABLE, (err, result)=>{
+        if(err){
+            throw err;
+        }
+        console.log('comment Table Created');
+    });
 });
 
 module.exports = connection

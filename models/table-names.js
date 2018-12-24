@@ -1,9 +1,11 @@
 const USER = 'user';
 const POST = 'post';
+const COMMENT = 'comment';
 
 const tables = {
     USER,
-    POST
+    POST,
+    COMMENT
 };
 
 module.exports = tables;

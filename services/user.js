@@ -30,7 +30,23 @@ function userAuthenticationCheck(authobj){
     
 }
 
+function getUserPostAndComment(userId){
+    return new Promise((resolve, reject)=>{
+        const query = `SELECT u.id as userId, CONCAT(u.first_name, ' ', u.last_name) as full_name, p.id, p.post, c.id as comment_id, c.comment 
+                        FROM ${tables.USER} u INNER JOIN ${tables.POST} p ON u.id = p.user_id
+                        LEFT JOIN ${tables.COMMENT} c ON  p.id = c.post_id 
+                        where u.id = ${userId}`;
+        connection.query(query, (err, result)=>{
+            if(err){
+                reject(err);
+            }
+            resolve(result);
+        });
+    });
+}
+
 module.exports = {
     createUser,
-    userAuthenticationCheck
+    userAuthenticationCheck,
+    getUserPostAndComment
 }

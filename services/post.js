@@ -13,6 +13,7 @@ function createPost(post , userId){
     });
 }
 
+
 module.exports = {
     createPost
 }
